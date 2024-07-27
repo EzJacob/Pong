@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://v2v71r6h2mqb"]
+
+[sub_resource type="SystemFont" id="SystemFont_rbcps"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0a4ah"]
+font = SubResource("SystemFont_rbcps")
+font_size = 32
+
+[sub_resource type="SystemFont" id="SystemFont_xom0j"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_wc02m"]
+font = SubResource("SystemFont_xom0j")
+font_size = 32
+
+[node name="Score" type="CanvasLayer"]
+
+[node name="Player_1_Score" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_0a4ah")
+horizontal_alignment = 2
+
+[node name="Player_2_Score" type="Label" parent="."]
+offset_left = -40.0
+offset_bottom = 23.0
+text = "0"
+label_settings = SubResource("LabelSettings_wc02m")

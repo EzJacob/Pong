@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cacnri0ifs5bm"]
+
+[ext_resource type="Texture2D" uid="uid://dns8p2oijaru7" path="res://Assets/Background Empty.png" id="1_torr0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dbiyj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3o7x1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5u7je"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1erxc"]
+
+[node name="Arena" type="Node2D"]
+
+[node name="BackGround" type="Sprite2D" parent="."]
+texture = ExtResource("1_torr0")
+
+[node name="Bottom" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(0, 272)
+shape = SubResource("WorldBoundaryShape2D_dbiyj")
+
+[node name="Top" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(0, -272)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_3o7x1")
+
+[node name="Right" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(547, 0)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_5u7je")
+
+[node name="Left" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-547, 0)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_1erxc")

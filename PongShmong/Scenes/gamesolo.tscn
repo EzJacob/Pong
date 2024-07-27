@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq2720oab1ux3"]
+
+[ext_resource type="Script" path="res://Scripts/gamesolo.gd" id="1_uvrb2"]
+[ext_resource type="PackedScene" uid="uid://cacnri0ifs5bm" path="res://Scenes/arena.tscn" id="2_h3sdl"]
+[ext_resource type="PackedScene" uid="uid://cmg8p5j30et7t" path="res://Scenes/paddle_1.tscn" id="3_7b5r3"]
+[ext_resource type="PackedScene" uid="uid://cv3gyb0jmvq28" path="res://Scenes/paddle_2.tscn" id="4_48e5s"]
+[ext_resource type="PackedScene" uid="uid://bc3ajds2vfs6o" path="res://Scenes/ball.tscn" id="5_acuca"]
+[ext_resource type="PackedScene" uid="uid://v2v71r6h2mqb" path="res://Scenes/score.tscn" id="6_awrkb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph7fj"]
+bg_color = Color(0.560784, 0.560784, 0.560784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rdsr"]
+bg_color = Color(0.341176, 0.341176, 0.341176, 1)
+
+[node name="GameSolo" type="Node2D"]
+script = ExtResource("1_uvrb2")
+
+[node name="Arena" parent="." instance=ExtResource("2_h3sdl")]
+
+[node name="Camera2D" type="Camera2D" parent="Arena"]
+zoom = Vector2(0.9, 0.9)
+
+[node name="Paddle1" parent="." instance=ExtResource("3_7b5r3")]
+position = Vector2(500, 0)
+
+[node name="Paddle2" parent="." instance=ExtResource("4_48e5s")]
+position = Vector2(-500, 0)
+
+[node name="Ball" parent="." instance=ExtResource("5_acuca")]
+
+[node name="Score" parent="." instance=ExtResource("6_awrkb")]
+offset = Vector2(574, 30)
+transform = Transform2D(1, 0, 0, 1, 574, 30)
+
+[node name="Exit" type="Button" parent="."]
+offset_left = -628.0
+offset_top = 300.0
+offset_right = -517.0
+offset_bottom = 341.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ph7fj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rdsr")
+text = "Go Back"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -492.0
+offset_top = 302.0
+offset_right = -190.0
+offset_bottom = 347.0
+theme_override_font_sizes/font_size = 30
+text = "Game to 11 Points"
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
