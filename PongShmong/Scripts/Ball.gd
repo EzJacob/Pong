@@ -1,12 +1,15 @@
 extends RigidBody2D
 
 const START_SPEED := 600
+const MAX_Y_VECTOR := 0.6
 
 var speed_increment := 50
 var current_speed := START_SPEED
 var reset_position := false
 var direction_to_player := 0 # 1 is for right - player 1, -1 is for left - player 2, 0 is random
+var direction := Vector2.ZERO
 @onready var timer_label := $"../Label"
+
 
 
 signal score_for_player_1
@@ -20,12 +23,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	print_time_left()
+	
+func _physics_process(delta):
+	move_and_collide(direction, current_speed, delta)
+	Global.set_ball_pos(global_position)
+	
 
 
 func _on_body_entered(body):
 	if body.name == "PaddleBody1" or body.name == "PaddleBody2":
 		current_speed += speed_increment
-		linear_velocity = linear_velocity.normalized() * current_speed
+		linear_velocity = new_direction(body) * current_speed
 	if body.name == "Right":
 		score_for_player_2.emit()
 		direction_to_player = 1
@@ -51,10 +59,11 @@ func start_movement():
 		if direction_to_player == 0:
 			direction_to_player = -1
 
-	var direction = Vector2(direction_to_player, randf_range(-0.5, 0.5)).normalized()
+	direction = Vector2(direction_to_player, randf_range(-0.5, 0.5)).normalized()
 
 	if direction == Vector2.ZERO:
-		direction = Vector2(1, 0).normalized()
+		direction = Vector2(0.8, 0).normalized()
+	
 	linear_velocity = direction * START_SPEED
 	
 
@@ -86,3 +95,24 @@ func print_time_left():
 	else:
 		timer_label.text = "0"
 		timer_label.hide()
+		
+# function to change the direction of the ball according where it got hit by the paddle
+func new_direction(collider):
+	var dist = global_position.y - collider.global_position.y
+	var max_angle = 45.0 # maximum angle in degrees
+	var max_dist = collider.PADDLE_HEIGHT / 2
+	var angle = (dist / max_dist) * deg_to_rad(max_angle)
+
+	# Adjust the ball's linear velocity based on the angle
+	var speed = linear_velocity.length()
+	linear_velocity.x = speed * cos(angle)
+	linear_velocity.y = speed * sin(angle)
+
+	# Ensure the ball's horizontal direction is correct
+	if global_position.x > collider.global_position.x:
+		linear_velocity.x = abs(linear_velocity.x)
+	else:
+		linear_velocity.x = -abs(linear_velocity.x)
+	
+	return linear_velocity.normalized()
+

@@ -7,8 +7,7 @@
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g4rf"]
-size = Vector2(18, 18)
+[sub_resource type="CircleShape2D" id="CircleShape2D_h0t66"]
 
 [sub_resource type="SystemFont" id="SystemFont_ad2b5"]
 subpixel_positioning = 0
@@ -25,7 +24,7 @@ collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_wex2k")
 gravity_scale = 0.0
 continuous_cd = 2
-max_contacts_reported = 1
+max_contacts_reported = 2
 contact_monitor = true
 lock_rotation = true
 script = ExtResource("1_87c0w")
@@ -34,7 +33,7 @@ script = ExtResource("1_87c0w")
 texture = ExtResource("1_t3pho")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_0g4rf")
+shape = SubResource("CircleShape2D_h0t66")
 
 [node name="Timer" type="Timer" parent="RigidBody2D"]
 process_callback = 0

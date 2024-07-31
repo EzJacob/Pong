@@ -1,6 +1,7 @@
 extends Control
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -12,9 +13,17 @@ func _process(delta):
 
 
 func _on_play_solo_pressed():
-	get_tree().change_scene_to_file("res://Scenes/gamesolo.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
+	Global.set_ai_play(false)
+	
 
 
 func _on_exit_pressed():
 	get_tree().quit()
 
+
+
+func _on_play_against_pc_pressed():
+	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
+	Global.set_ai_play(true)
+	

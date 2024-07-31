@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/paddle_1.gd" id="1_fmbi3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exiom"]
-size = Vector2(15, 106)
+size = Vector2(16, 106)
 
 [node name="Paddle1" type="Node2D"]
 
@@ -15,5 +15,5 @@ script = ExtResource("1_fmbi3")
 texture = ExtResource("1_7chdt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PaddleBody1"]
-position = Vector2(0.5, 1)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_exiom")
