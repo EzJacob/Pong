@@ -50,7 +50,7 @@ text = "Play Against PC"
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_3u128")
-text = "Play Multiplayer"
+text = "Play Multiplayer (not working)"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)

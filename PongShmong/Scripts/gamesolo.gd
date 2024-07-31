@@ -44,7 +44,10 @@ func _on_exit_pressed():
 	
 func game_over_screen(player_num_in_str):
 	gameover = true
-	$Label.text = "Player " + player_num_in_str + " Won!"
+	if Global.get_ai_play() == true and player_2_score >= 11:
+		$Label.text = "AI Won!"
+	else:
+		$Label.text = "Player " + player_num_in_str + " Won!"
 	$Label.add_theme_color_override("font_color", WON_COLOR)
 	remove_ball()
 
